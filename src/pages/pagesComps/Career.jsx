@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 
 // Mui imports
 import Box from '@mui/material/Box';
@@ -21,23 +22,26 @@ const Career = () => {
       jobType: "Full Time",
       company: "Birdview",
       location: "Worldwide",
-      pageLink: "https://www.birdview.com/careers/agent-Registration"
+      pageLink: "/agent-Registration"
     },
     {
       id: 2,
-      jobTitle: "Coming Soon...",
+      jobTitle: "Work With Us",
       jobType: "Full Time",
       company: "Birdview",
-      location: "Nairobi"
-    },
-    {
-      id: 3,
-      jobTitle: "Coming Soon...",
-      jobType: "Part Time",
-      company: "Birdview",
-      location: "Nairobi"
+      location: "Nairobi",
+      pageLink: "/job-Application"
     }
   ];
+
+  const handleApply = () => {
+    const job = jobListings.find(j => j.id === selectedJobId);
+    if (job?.pageLink) {
+      window.open(job.pageLink, "_blank");
+    } else {
+      alert("Application link not available.");
+    }
+  };
 
   return (
     <div className="relative bg-gray-100">
@@ -90,7 +94,18 @@ const Career = () => {
                           </p>
                         </div>
                         <div className="flex justify-end w-full">
-                          <Button onClick={(jobListings)=>{}}>Apply</Button>
+                        <Button
+                          onClick={() => {
+                            if (job.pageLink) {
+                              window.open(job.pageLink, "_blank");
+                            } else {
+                              alert("Application link not available.");
+                            }
+                          }}
+                        >
+                          Apply
+                        </Button>
+
                         </div>
                       </AnimationRightToLeft>
                     </div>

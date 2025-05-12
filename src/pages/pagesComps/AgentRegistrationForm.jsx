@@ -254,301 +254,339 @@ const handleReset = () => {
           </div>
                                       
           {/* Form Section */}
-               
-                          {alertMessage && (
-                          <div className="w-full px-4 mb-4">
-                            <Alert
-                              severity={alertType}
-                              onClose={() => setAlertMessage('')}
-                              variant="filled"
-                              sx={{
-                                borderRadius: '8px',
-                                fontSize: '1rem',
-                                fontWeight: 500,
-                              }}
-                            >
-                              {alertMessage}
-                            </Alert>
-                          </div>
-                        )}
+        
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-4xl w-full mx-auto p-4 bg-white shadow-2xl rounded-3xl border border-gray-200 space-y-10"
+          style={{ boxShadow: "0px 15px 40px rgba(0, 0, 0, 0.08)" }}
+        >
+          {/* Alert Message */}
+          {alertMessage && (
+            <div className="w-full px-4 mb-4">
+              <Alert
+                severity={alertType}
+                onClose={() => setAlertMessage("")}
+                variant="filled"
+                sx={{
+                  borderRadius: "8px",
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                }}
+              >
+                {alertMessage}
+              </Alert>
+            </div>
+          )}
 
-                        <form 
-                          style={{ boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)" }} 
-                          className="flex flex-col space-y-10  bg-white rounded-lg shadow-xl"
-                          onSubmit={handleSubmit}
-                        >
-                          <br/>
-                          <div className="text-gray-800 font-bold mb-2 flex flex-col sm:flex-row items-center sm:justify-between text-center relative">
-                          {/* Logo (Centered) */}
-                          <div className="flex-shrink-0">
-                            <Image
-                              width={180}
-                              height={50}
-                              src="/images/logo.jpeg"
-                              alt="Logo"
-                              style={{
-                                width: "19%",
-                                height: "auto",
-                                maxWidth: "360px",
-                                minWidth: "220px",
-                                transition: "width 0.3s ease-in-out",
-                              }}
-                            />
-                          </div>
+          {/* Header */}
+          <div className="text-center relative">
+            <div className="mb-4">
+              <Image
+                width={180}
+                height={50}
+                src="/images/logo.jpeg"
+                alt="Logo"
+                className="mx-auto transition-all duration-300"
+                style={{ maxWidth: "240px" }}
+              />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-800 tracking-wide">
+              Agent Registration Form
+            </h2>
+            <div className="w-16 h-1 bg-blue-600 mt-3 mx-auto rounded-full"></div>
+          </div>
 
-                          {/* Centered Text (Moves below on small screens) */}
-                          <div className="mt-6 sm:mt-0 sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2 text-center">
-                          <h2 className="text-2xl font-semibold text-gray-800 tracking-wide">
-                            Agent Registration Forms
-                          </h2>
-                          <div className="w-16 h-1 bg-blue-600 mt-2 mx-auto rounded"></div>
-                        </div>
+          {/* Input Fields Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <TextField
+                      select
+                      name="title"
+                      label="Title"
+                      variant="outlined"
+                      value={formData.title}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    >
+                      {["Mr", "Mrs", "Miss", "Ms", "Dr", "Prof"].map((title) => (
+                        <MenuItem key={title} value={title}>
+                          {title}
+                        </MenuItem>
+                      ))}
+                    </TextField>
 
-                        </div>
+                    <TextField
+                      required
+                      name="firstname"
+                      label="First Name"
+                      variant="outlined"
+                      value={formData.firstname}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    />
 
-                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-6">
-                          <TextField
-                              select
-                              required
-                              name="title"
-                              label="Title"
-                              variant="outlined"
-                              value={formData.title}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            >
-                              {["Mr", "Mrs", "Miss", "Ms", "Dr", "Prof"].map((title) => (
-                                <MenuItem key={title} value={title}>
-                                  {title}
-                                </MenuItem>
-                              ))}
-                            </TextField>
-                                
-                            <TextField
-                              required
-                              name="firstname"
-                              label="First Name"
-                              variant="outlined"
-                              value={formData.firstname}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            />
+                    <TextField
+                      name="middlename"
+                      label="Middle Name"
+                      variant="outlined"
+                      value={formData.middlename}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    />
 
-                            <TextField 
-                              name="middlename"
-                              label="Middle Name"
-                              variant="outlined"
-                              value={formData.middlename}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            />
-                            
-                            <TextField 
-                              required
-                              name="lastname"
-                              label="Last Name"
-                              variant="outlined"
-                              value={formData.lastname}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            />
-                            
-                            <TextField
-                              required
-                              name="gender"
-                              select
-                              label="Gender"
-                              variant="outlined"
-                              value={formData.gender}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            >
-                              <MenuItem value="Male">Male</MenuItem>
-                              <MenuItem value="Female">Female</MenuItem>
-                              <MenuItem value="Others">Others</MenuItem>
-                            </TextField>
+                    <TextField
+                      required
+                      name="lastname"
+                      label="Last Name"
+                      variant="outlined"
+                      value={formData.lastname}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    />
 
-                            <PhoneInput
-                              required
-                              country={"ke"} 
-                              value={formData.mobileno}
-                              onChange={handlePhoneChange}
-                              inputStyle={{
-                                width: "100%",
-                                height: "55px",
-                                borderRadius: "4px",
-                                backgroundColor: "#f3f4f6"
-                              }}
-                              buttonClass="!bg-gray-200 !border-r"
-                              containerClass="!w-full"
-                            />
+                    <TextField
+                      required
+                      name="gender"
+                      select
+                      label="Gender"
+                      variant="outlined"
+                      value={formData.gender}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    >
+                      <MenuItem value="Male">Male</MenuItem>
+                      <MenuItem value="Female">Female</MenuItem>
+                      <MenuItem value="Others">Others</MenuItem>
+                    </TextField>
 
-                            <TextField 
-                              name="postal_address"
-                              label="Postal Address"
-                              variant="outlined"
-                              value={formData.postal_address}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            />
+                    <div className="w-full">
+                      <PhoneInput
+                        country={"ke"}
+                        value={formData.mobileno}
+                        onChange={handlePhoneChange}
+                        inputStyle={{
+                          width: "100%",
+                          height: "56px",
+                          borderRadius: "12px",
+                          backgroundColor: "#f9fafb",
+                          fontSize: "1rem",
+                          paddingLeft: "48px",
+                        }}
+                        buttonClass="!bg-gray-100 !border-r"
+                        containerClass="!w-full"
+                      />
+                    </div>
 
-                            <TextField
-                              required
-                              name="idtype"
-                              select
-                              label="Identification Type"
-                              variant="outlined"
-                              value={formData.idtype}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            >
-                              <MenuItem value="National ID">National ID</MenuItem>
-                              <MenuItem value="Passport">Passport</MenuItem>
-                            </TextField>
+                    <TextField
+                      required
+                      name="eimail"
+                      label="Email"
+                      variant="outlined"
+                      value={formData.eimail}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    />
 
-                            <TextField 
-                              required
-                              name="idno"
-                              label="Identification Number"
-                              variant="outlined"
-                              value={formData.idno}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            />
+                    <TextField
+                      name="postal_address"
+                      label="Postal Address"
+                      variant="outlined"
+                      value={formData.postal_address}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    />
 
-                            <TextField 
-                              name="pin_no"
-                              label="KRA Pin Number"
-                              variant="outlined"
-                              value={formData.pin_no}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            />
+                    <TextField
+                      required
+                      name="idtype"
+                      select
+                      label="Identification Type"
+                      variant="outlined"
+                      value={formData.idtype}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    >
+                      <MenuItem value="National ID">National ID</MenuItem>
+                      <MenuItem value="Passport">Passport</MenuItem>
+                    </TextField>
 
-                            <div className="flex flex-col">
-                              <TextField
-                                label="Date of Birth"
-                                name="dateofbirth"
-                                type="date"
-                                value={formData.dateofbirth}
-                                onChange={(e) =>
-                                  setFormData((prev) => ({
-                                    ...prev,
-                                    dateofbirth: e.target.value,
-                                  }))
-                                }
-                                InputLabelProps={{ shrink: true }}
-                                className="bg-gray-100 rounded-lg"
-                                fullWidth
-                                error={!!errors.dateofbirth}
-                              />
-                              {errors.dateofbirth && (
-                                <span className="text-sm text-red-600 mt-1 ml-1">
-                                  {errors.dateofbirth}
-                                </span>
-                              )}
-                            </div>
+                    <TextField
+                      required
+                      name="idno"
+                      label="Identification Number"
+                      variant="outlined"
+                      value={formData.idno}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    />
 
-                            <TextField
-                              required
-                              name="country"
-                              select
-                              label="Country Of Residence Of Agent"
-                              variant="outlined"
-                              value={formData.country}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            >
-                              {countries.map((country) => (
-                                <MenuItem key={country} value={country}>
-                                  {country}
-                                </MenuItem>
-                              ))}
-                            </TextField>
+                    <TextField
+                      name="pin_no"
+                      label="KRA Pin Number"
+                      variant="outlined"
+                      value={formData.pin_no}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    />
 
-                            <TextField 
-                              required
-                              name="city"
-                              label="City Of Residence Of Agent"
-                              variant="outlined"
-                              value={formData.city}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            />
+                    <TextField
+                      label="Date of Birth"
+                      name="dateofbirth"
+                      type="date"
+                      value={formData.dateofbirth}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          dateofbirth: e.target.value,
+                        }))
+                      }
+                      InputLabelProps={{ shrink: true }}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                      error={!!errors.dateofbirth}
+                    />
+                    {errors.dateofbirth && (
+                      <span className="text-sm text-red-600 mt-1 col-span-full">
+                        {errors.dateofbirth}
+                      </span>
+                    )}
 
-                            <TextField 
-                              required
-                              name="eimail"
-                              label="Email"
-                              variant="outlined"
-                              value={formData.eimail}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            /> 
+                    <TextField
+                      required
+                      name="country"
+                      select
+                      label="Country of Residence"
+                      variant="outlined"
+                      value={formData.country}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    >
+                      {countries.map((country) => (
+                        <MenuItem key={country} value={country}>
+                          {country}
+                        </MenuItem>
+                      ))}
+                    </TextField>
 
-                            <TextField 
-                              name="company_name"
-                              label="Company Name"
-                              variant="outlined"
-                              value={formData.company_name}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            /> 
+                    <TextField
+                      required
+                      name="city"
+                      label="City of Residence"
+                      variant="outlined"
+                      value={formData.city}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    />
 
-                            <TextField 
-                              name="company_certificate"
-                              label="Company Certificate"
-                              variant="outlined"
-                              value={formData.company_certificate}
-                              onChange={handleChange}
-                              fullWidth
-                              className="bg-gray-100 rounded-lg"
-                            />
-                            
-                          </div>                                                          
+                    <TextField
+                      name="company_name"
+                      label="Company Name"
+                      variant="outlined"
+                      value={formData.company_name}
+                      onChange={handleChange}
+                      fullWidth
+                      InputProps={{
+                        style: { backgroundColor: "#f9fafb", borderRadius: "12px" },
+                      }}
+                    />
+          </div>
 
-                                      <div className="flex justify-center mt-8 space-x-6">
-                                      <button 
-                                        type="submit" 
-                                        className="relative px-8 py-4 rounded-xl text-white font-extrabold text-lg 
-                                                  bg-gradient-to-r from-blue-500 to-blue-700 shadow-lg 
-                                                  hover:from-blue-600 hover:to-blue-800 hover:shadow-blue-500/50 
-                                                  focus:ring-4 focus:ring-blue-400 
-                                                  transition-all duration-300 ease-in-out 
-                                                  before:absolute before:inset-0 before:bg-white/10 before:rounded-xl before:opacity-0 before:transition-opacity before:duration-300 before:hover:opacity-100 
-                                                  hover:scale-105"
-                                      >
-                                        Submit
-                                      </button>
-                                      <button 
-                                        type="reset" 
-                                        onClick={handleReset}
-                                        className="relative px-8 py-4 rounded-xl text-white font-extrabold text-lg 
-                                                  bg-gradient-to-r from-red-500 to-red-700 shadow-lg 
-                                                  hover:from-red-600 hover:to-red-800 hover:shadow-red-500/50 
-                                                  focus:ring-4 focus:ring-red-400 
-                                                  transition-all duration-300 ease-in-out 
-                                                  before:absolute before:inset-0 before:bg-white/10 before:rounded-xl before:opacity-0 before:transition-opacity before:duration-300 before:hover:opacity-100 
-                                                  hover:scale-105"
-                                      >
-                                        Reset
-                                      </button>
-                                    </div>
+          {/* File Upload Section
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+            {[
+              { field: "id_document", label: "ID Type Document" },
+              { field: "company_certificate", label: "Company CR12 Certificate" },
+              { field: "incorporation_certificate", label: "Certificate of Incorporation" },
+            ].map(({ field, label }) => (
+              <div key={field} className="w-full">
+                <label
+                  htmlFor={field}
+                  className="block text-sm font-semibold text-gray-800 mb-1"
+                >
+                  {label}
+                </label>
 
-                                  </form>
+                <label
+                  htmlFor={field}
+                  className="flex items-center justify-between px-4 py-3 bg-gray-50 border border-gray-300 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer text-sm text-gray-600 font-medium"
+                >
+                  <span>
+                    {formData[field]?.name || "Upload Document (PDF, DOC, JPG, PNG)"}
+                  </span>
+                  <svg
+                    className="w-5 h-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v8m0-8l-3 3m3-3l3 3m0-11V4m0 0L9 8m3-4l3 4"
+                    />
+                  </svg>
+                </label>
+
+                <input
+                  type="file"
+                  id={field}
+                  name={field}
+                  accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+                  onChange={handleChange}
+                  className="hidden"
+                />
+              </div>
+            ))}
+          </div> */}
+
+          {/* Submit Button */}
+          <div className="text-center pt-6">
+            <button
+              type="submit"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300"
+            >
+              Submit Registration
+            </button>
+          </div>
+        </form>
                                   
                           </div>
                                   
