@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Home from './Home';
 import SwipeableDrawer from '../components/SiderbarNavigation';
-import Claims from './Claims';
 import HomeSubMenu from './components/Navigations/HomeSubMenu';
 import ProductAndServiceSubMenu from './components/Navigations/ProductAndServiceSubMenu';
 import QuotesSubMenu from './components/Navigations/QuotesSubMenu';
@@ -11,23 +9,18 @@ import ClaimsSubMenu from './components/Navigations/ClaimsSubMenu';
 
 // MUI imports
 import { Button, Divider } from '@mui/material';
-import { Mail as MailIcon,  Notifications as NotificationsIcon, AccountCircle, } from "@mui/icons-material";
+import { Notifications as NotificationsIcon, } from "@mui/icons-material";
 import { AppBar, Box, Toolbar, IconButton, Badge, Menu, MenuItem } from "@mui/material";
 import { useMediaQuery } from '@mui/material';
 import { Tooltip } from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Image from 'next/image';
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { useRouter } from "next/navigation";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PublicIcon from '@mui/icons-material/Public';
 import NewspaperOutlinedIcon from '@mui/icons-material/NewspaperOutlined';
 
-import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
-import { motion } from "framer-motion";
 
 
-import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 
 import { WhatsApp } from "@mui/icons-material";
 
