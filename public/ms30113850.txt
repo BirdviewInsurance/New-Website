@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "birdviewinsurance.com",
+  "Id": "ae4559f3-a424-40ce-a3f6-d3c2fdb4f9db"
+}
